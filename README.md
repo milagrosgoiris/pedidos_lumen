@@ -1,30 +1,119 @@
-# Laravel + Livewire Starter Kit
+# 🛒 Pedidos Lumen
+**Sistema de gestión de pedidos, stock y proveedores para negocios con múltiples locales.**
 
-## Introduction
+Pedidos Lumen es un sistema web desarrollado en **Laravel 12 + Livewire**, diseñado para centralizar pedidos, controlar el stock en tiempo real y mejorar la comunicación entre empleados, encargados y gerentes.  
+El proyecto forma parte del **Trabajo Final Integrador – UTN**.
 
-Our Laravel + [Livewire](https://livewire.laravel.com) starter kit provides a robust, modern starting point for building Laravel applications with a Livewire frontend.
+---
 
-Livewire is a powerful way of building dynamic, reactive, frontend UIs using just PHP. It's a great fit for teams that primarily use Blade templates and are looking for a simpler alternative to JavaScript-driven SPA frameworks like React and Vue.
+## 📌 Objetivos del sistema
+- Centralizar y organizar los pedidos por local.
+- Mantener el stock actualizado en tiempo real.
+- Reducir faltantes y mejorar la toma de decisiones.
+- Registrar productos, marcas, proveedores y movimientos.
+- Brindar a los encargados una herramienta clara y rápida.
+- Proveer al gerente un dashboard general con métricas.
 
-This Livewire starter kit utilizes Livewire 3, Laravel Volt (optionally), TypeScript, Tailwind, and the [Flux UI](https://fluxui.dev) component library.
+---
 
-If you are looking for the alternate configurations of this starter kit, they can be found in the following branches:
+## 🏗️ Tecnologías utilizadas
+- **Laravel 12**
+- **Livewire 3**
+- **Blade**
+- **MySQL**
+- **TailwindCSS**
+- **XAMPP**
+- **PHP 8.2**
+- **GitHub + GitLab CI/CD**
 
-- [components](https://github.com/laravel/livewire-starter-kit/tree/components) - if Volt is not selected
-- [workos](https://github.com/laravel/livewire-starter-kit/tree/workos) - if WorkOS is selected for authentication
+---
 
-## Official Documentation
+## 🔐 Roles del sistema
+- **Administrador** → controla todo  
+- **Gerente** → dashboard general, stock crítico, pedidos  
+- **Encargado/Empleado** → carga pedidos, adjunta imágenes, controla stock
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+---
 
-## Contributing
+## 📦 Funcionalidades principales (CRUD)
+### 🧾 CRUDs base
+- CRUD de Proveedores  
+- CRUD de Marcas  
+- CRUD de Productos  
+- CRUD de Locales  
+- CRUD de Usuarios (roles/permisos)
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🛒 Pedidos
+- Crear pedidos con productos
+- Editar productos del pedido
+- Adjuntar imágenes (remitos, fotos)
+- Cambiar estado del pedido (pendiente, enviado, recibido)
+- Comentarios internos
+- Historial
 
-## Code of Conduct
+### 📦 Stock
+- Control de stock por local
+- Movimientos de stock
+- Alerta de stock crítico
+- Reportes
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 📊 Dashboard (Gerente)
+- Pedidos pendientes / completados
+- Productos más pedidos
+- Stock crítico
+- Proveedores más utilizados
 
-## License
+---
 
-The Laravel + Livewire starter kit is open-sourced software licensed under the MIT license.
+## 🔄 Flujo de trabajo (Git)
+El repositorio principal está alojado en **GitHub**.  
+GitLab se utiliza como **espejo automático** y para:
+
+- CI/CD
+- Calidad de código
+- Métricas
+- Tablero ágil (híbrido Kanban)
+
+✔️ Cada push en GitHub actualiza automáticamente GitLab.
+
+---
+
+## 🧪 CI/CD (GitLab)
+Pipeline configurado con:
+
+- Lint (PHP CS Fixer)
+- Unit tests (Pest/PHPUnit)
+- Code Quality
+- SAST
+- Build & Deploy (opcional)
+
+Archivos clave:
+- `.gitlab-ci.yml`
+- `phpunit.xml`
+
+---
+
+## 📐 Modelo de datos (ER)
+Incluye:
+
+- Proveedores
+- Marcas
+- Productos
+- Usuarios
+- Locales
+- Roles
+- Pedidos
+- PedidoItems
+- Stock
+
+*(Ver carpeta `/docs/modelo-datos`)*
+
+---
+
+## 👩‍💻 Autora
+**Milagros Goiris**  
+Técnica Universitaria en Desarrollo de Software – UTN  
+
+---
+
+
