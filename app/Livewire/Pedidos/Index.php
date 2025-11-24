@@ -4,27 +4,25 @@ namespace App\Livewire\Pedidos;
 
 use App\Models\Pedido;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
-
-    public string $q = '';
-
-    public function updatingQ(): void
-    {
-        $this->resetPage();
-    }
+    public $search = '';
 
     public function render()
     {
-        $rows = Pedido::with(['proveedor:id,nombre','origen:id,nombre','destino:id,nombre'])
-            ->when($this->q !== '', fn ($q) => $q->where('id', $this->q))
-            ->latest('id')
-            ->paginate(10);
+        $pedidos = Pedido::with(['origen', 'destino', 'proveedor'])
+            ->where(function ($query) {
+                $query->where('id', 'like', "%{$this->search}%")
+                      ->orWhereHas('proveedor', fn($q) => $q->where('nombre', 'like', "%{$this->search}%"))
+                      ->orWhereHas('origen', fn($q) => $q->where('nombre', 'like', "%{$this->search}%"))
+                      ->orWhereHas('destino', fn($q) => $q->where('nombre', 'like', "%{$this->search}%"));
+            })
+            ->orderByDesc('id')
+            ->get();
 
-        return view('livewire.pedidos.index', compact('rows'))
-            ->layout('layouts.app', ['title' => 'Pedidos']);
+        return view('livewire.pedidos.index', [
+            'pedidos' => $pedidos,
+        ])->layout('layouts.app', ['title' => 'Pedidos']);
     }
 }

@@ -8,16 +8,13 @@ class PedidoItem extends Model
 {
     protected $table = 'pedido_items';
 
-    protected $fillable = [
+       protected $fillable = [
         'pedido_id',
         'producto_id',
-        'cantidad_solicitada',
-        'cantidad_preparada',
-        'cantidad_enviada',
-        'cantidad_recibida',
-        'nota',
+        'cantidad',
     ];
-
+    
+    public $timestamps = false;
     public function pedido()
     {
         return $this->belongsTo(Pedido::class);

@@ -55,6 +55,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/pedidos/{pedido}',       PedidosVer::class)->name('pedidos.ver');
     Route::get('/pedidos/{pedido}/imprimir', [PedidoPrintController::class, 'show'])
         ->name('pedidos.imprimir');
+        
 
     // Locales
     Route::get('/locales',                LocalesIndex::class)->name('locales.index');
