@@ -1,119 +1,170 @@
-# 🛒 Pedidos Lumen
-**Sistema de gestión de pedidos, stock y proveedores para negocios con múltiples locales.**
+Pedidos Lumen
 
-Pedidos Lumen es un sistema web desarrollado en **Laravel 12 + Livewire**, diseñado para centralizar pedidos, controlar el stock en tiempo real y mejorar la comunicación entre empleados, encargados y gerentes.  
-El proyecto forma parte del **Trabajo Final Integrador – UTN**.
+Sistema de gestión de pedidos desarrollado con Laravel 12 + Livewire + MySQL, utilizando buenas prácticas de control de versiones, CI/CD y arquitectura limpia. Proyecto realizado como parte del Trabajo Final Integrador de Metodología de Sistemas II – UTN.
 
----
+📝 Descripción
 
-## 📌 Objetivos del sistema
-- Centralizar y organizar los pedidos por local.
-- Mantener el stock actualizado en tiempo real.
-- Reducir faltantes y mejorar la toma de decisiones.
-- Registrar productos, marcas, proveedores y movimientos.
-- Brindar a los encargados una herramienta clara y rápida.
-- Proveer al gerente un dashboard general con métricas.
+Pedidos Lumen es un sistema para gestionar pedidos, productos, proveedores y estados del flujo comercial.
+Está desarrollado con Laravel 12 y Livewire, integrando:
 
----
+CRUD de pedidos
 
-## 🏗️ Tecnologías utilizadas
-- **Laravel 12**
-- **Livewire 3**
-- **Blade**
-- **MySQL**
-- **TailwindCSS**
-- **XAMPP**
-- **PHP 8.2**
-- **GitHub + GitLab CI/CD**
+Manejo de stock
 
----
+Vistas dinámicas con Livewire
 
-## 🔐 Roles del sistema
-- **Administrador** → controla todo  
-- **Gerente** → dashboard general, stock crítico, pedidos  
-- **Encargado/Empleado** → carga pedidos, adjunta imágenes, controla stock
+Validaciones del lado del servidor
 
----
+Seguridad con CSRF, middleware y .env
 
-## 📦 Funcionalidades principales (CRUD)
-### 🧾 CRUDs base
-- CRUD de Proveedores  
-- CRUD de Marcas  
-- CRUD de Productos  
-- CRUD de Locales  
-- CRUD de Usuarios (roles/permisos)
+Estrategia de ramas profesional (backend/frontend)
 
-### 🛒 Pedidos
-- Crear pedidos con productos
-- Editar productos del pedido
-- Adjuntar imágenes (remitos, fotos)
-- Cambiar estado del pedido (pendiente, enviado, recibido)
-- Comentarios internos
-- Historial
+Mirror automático GitHub → GitLab con CI/CD
 
-### 📦 Stock
-- Control de stock por local
-- Movimientos de stock
-- Alerta de stock crítico
-- Reportes
+🛠 Tecnologías utilizadas
 
-### 📊 Dashboard (Gerente)
-- Pedidos pendientes / completados
-- Productos más pedidos
-- Stock crítico
-- Proveedores más utilizados
+PHP 8
 
----
+Laravel 12
 
-## 🔄 Flujo de trabajo (Git)
-El repositorio principal está alojado en **GitHub**.  
-GitLab se utiliza como **espejo automático** y para:
+Livewire 
 
-- CI/CD
-- Calidad de código
-- Métricas
-- Tablero ágil (híbrido Kanban)
+MySQL (XAMPP)
 
-✔️ Cada push en GitHub actualiza automáticamente GitLab.
+Composer
 
----
+Node.js + Vite
 
-## 🧪 CI/CD (GitLab)
-Pipeline configurado con:
+GitHub Actions (CI/CD)
 
-- Lint (PHP CS Fixer)
-- Unit tests (Pest/PHPUnit)
-- Code Quality
-- SAST
-- Build & Deploy (opcional)
-
-Archivos clave:
-- `.gitlab-ci.yml`
-- `phpunit.xml`
-
----
-
-## 📐 Modelo de datos (ER)
-Incluye:
-
-- Proveedores
-- Marcas
-- Productos
-- Usuarios
-- Locales
-- Roles
-- Pedidos
-- PedidoItems
-- Stock
-
-*(Ver carpeta `/docs/modelo-datos`)*
-
----
-
-## 👩‍💻 Autora
-**Milagros Goiris**  
-Técnica Universitaria en Desarrollo de Software – UTN  
-
----
+Git / Git Flow simplificado
 
 
+⚙️ Instalación
+
+Clonar el repositorio:
+
+git clone https://github.com/milagrosgoiris/pedidos_lumen.git
+cd pedidos_lumen
+
+
+Instalar dependencias:
+
+composer install
+npm install
+
+🔧 Configuración del entorno (.env)
+
+Crear archivo .env:
+
+cp .env.example .env
+
+
+Generar clave de app:
+
+php artisan key:generate
+
+
+Configurar base de datos local:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=pedidos_lumen
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+⚠️ Recordá: .env nunca se sube al repositorio.
+
+🗄 Migraciones y base de datos
+
+Crear base de datos:
+
+pedidos_lumen
+
+
+Ejecutar migraciones:
+
+php artisan migrate
+
+
+Opcional (si agregás seeds):
+
+php artisan db:seed
+
+▶ Ejecución del proyecto
+
+Ejecutar backend:
+
+php artisan serve
+
+
+Ejecutar Vite (frontend dinámico):
+
+npm run dev
+
+
+Abrir en el navegador:
+👉 http://localhost:8000
+
+📁 Estructura del proyecto
+/app
+    /Http
+    /Livewire
+/resources
+    /views
+/routes
+    web.php
+/database
+    /migrations
+/public
+
+🔄 CI/CD
+
+Este repositorio utiliza GitHub Actions:
+
+✔ Linter / Quality Check
+
+Se ejecuta en cada Pull Request para garantizar integridad del código.
+
+✔ Mirror a GitLab
+
+Workflow: .github/workflows/gitlab-mirror.yml
+Sincroniza automáticamente la rama main con el repositorio espejo en GitLab usando SSH Keys almacenadas en GitHub Secrets.
+
+✔ Secrets
+
+Configurados en:
+
+GITLAB_REPO_URL
+
+GITLAB_SSH_PRIVATE_KEY
+
+🔐 Buenas prácticas aplicadas
+
+Manejo seguro de secretos con .env + GitHub Secrets
+
+CSRF Protection
+
+Middleware auth y verified
+
+Validaciones del lado del servidor
+
+Eloquent ORM (prevención de SQL Injection)
+
+Ramas separadas por funcionalidad
+
+Commits usando Conventional Commits
+
+Logs de Laravel activos
+
+Dependabot y Secret Scanning activados
+
+📚 Repositorios
+
+Repositorio principal (GitHub):
+👉 https://github.com/milagrosgoiris/pedidos_lumen
+
+Repositorio espejo (GitLab):
+👉 https://gitlab.com/milagrosgoiris42/pedidos_lumen
